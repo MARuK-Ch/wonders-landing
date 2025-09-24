@@ -48,13 +48,13 @@
                         <div class="order-menu-radio-container">
                             <div class="radio-1">
                                 <label class="custom-radio">
-                                    <input type="radio" name="choice" class="input-radio">
+                                    <input type="radio" name="choice" class="input-radio" id="roundTrip">
                                     <span class="custom-radio-span"></span> Round trip
                                 </label>
                             </div>
                             <div class="radio-2">
                                 <label class="custom-radio">
-                                    <input type="radio" name="choice" class="input-radio">
+                                    <input type="radio" name="choice" class="input-radio" id="oneWay">
                                     <span class="custom-radio-span"></span> One Way
                                 </label>
                             </div>
@@ -62,7 +62,7 @@
                                 <img src="assets/icons/human_icon.png">
                                 <div class="counter-button">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M5.21994 9.21973C4.77994 9.21973 4.43994 9.55973 4.43994 9.99973C4.43994 10.4397 4.77994 10.7797 5.21994 10.7797H14.7799C15.2199 10.7797 15.5599 10.4397 15.5599 9.99973C15.5599 9.55973 15.2199 9.21973 14.7799 9.21973H9.21994H5.21994Z" fill="#202020" fill-opacity="0.5" />
+                                        <path d="M5.21994 9.21973C4.77994 9.21973 4.43994 9.55973 4.43994 9.99973C4.43994 10.4397 4.77994 10.7797 5.21994 10.7797H14.7799C15.2199 10.7797 15.5599 10.4397 15.5599 9.99973C15.5599 9.55973 15.2199 9.21973 14.7799 9.21973H9.21994H5.21994Z" fill="#0578FF" fill-opacity="0.5" />
                                     </svg>
                                 </div>
                                 <span id="number-of-passenger" class="counter-span">1</span>
@@ -83,7 +83,7 @@
                             </div>
                             <div class="arrival">
                                 <label class="departure-label" for="arrival-input">Arrival</label>
-                                <input id="arrival-input" placeholder="Where to?" />
+                                    <input id="arrival-input" placeholder="Where to?" />
                                 <ul id="autocomplete-dropdown-arrival" class="autocomplete-dropdown hidden">
                                     <li></li>
                                 </ul>
@@ -95,21 +95,69 @@
                                 <span class="departure-label">Pick your lucky day</span>
                             </div>
                             <div class="depart-return-container">
-                                <div class="calendar-return">
-<!--                                    <label for="calendar" class="calendar-text">Depart</label>-->
-<!--                                    <input type="date" id="calendar" name="calendar">-->
+                                <div class="calendar-return" id="depart">
                                     <button class="date-input-button" id="input-button">
                                         <img src="./assets/icons/calendar.svg" alt="calender icon">
                                         <span>Depart</span>
                                     </button>
                                 </div>
-                                <div class="calendar-return">
-<!--                                    <label for="calendar" class="calendar-text">Return</label>-->
-<!--                                    <input type="date" name="calendar">-->
+                                <div class="calendar-return" id="return">
                                     <button class="date-input-button">
                                         <img src="./assets/icons/calendar.svg" alt="calender icon">
                                         <span>Return</span>
                                     </button>
+                                </div>
+
+                                <div class="calendar hidden" id="calendar">
+                                    <div class="months">
+                                        <div class="left-month month">
+                                            <div class="calendar-header">
+                                                <button id="prev-month-btn" class="nav-btn prev-month-button" aria-label="Previous month">
+                                                    <img src="./assets/icons/arrow-left.svg" alt="arrow left icon">
+                                                </button>
+                                                <span id="left-month-year" class="month-year">December 2025</span>
+                                                <div class="header-spacer"></div>
+                                            </div>
+                                            <div class="calendar-body">
+                                                <div class="weekdays">
+                                                    <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+                                                </div>
+                                                <div id="curr-month-dates" class="dates">
+                                                    <button class="date">1</button><button class="date">2</button><button class="date">3</button><button class="date">4</button><button class="date">5</button><button class="date">6</button><button class="date">7</button>
+                                                    <button class="date">8</button><button class="date">9</button><button class="date">10</button><button class="date">11</button><button class="date">12</button><button class="date">13</button><button class="date">14</button>
+                                                    <button class="date">15</button><button class="date">16</button><button class="date">17</button><button class="date">18</button><button class="date">19</button><button class="date">20</button><button class="date">21</button>
+                                                    <button class="date">22</button><button class="date">23</button><button class="date">24</button><button class="date">25</button><button class="date">26</button><button class="date">27</button><button class="date">28</button>
+                                                    <button class="date">29</button><button class="date">30</button><button class="date">31</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right-month month">
+                                            <div class="calendar-header">
+                                                <div class="header-spacer"></div>
+                                                <span id="right-month-year" class="month-year">January 2025</span>
+                                                <button id="next-month-btn" class="nav-btn next-month-button" aria-label="Next month">
+                                                    <img src="./assets/icons/arrow-right.svg" alt="arrow right icon">
+                                                </button>
+                                            </div>
+                                            <div class="calendar-body">
+                                                <div class="weekdays">
+                                                    <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+                                                </div>
+                                                <div id="next-month-dates" class="dates">
+                                                    <span class="empty"></span><span class="empty"></span>
+                                                    <button class="date">1</button><button class="date">2</button><button class="date">3</button><button class="date">4</button>
+                                                    <button class="date">5</button><button class="date">6</button><button class="date">7</button><button class="date">8</button><button class="date">9</button><button class="date">10</button><button class="date">11</button>
+                                                    <button class="date">12</button><button class="date">13</button><button class="date">14</button><button class="date">15</button><button class="date">16</button><button class="date">17</button><button class="date">18</button>
+                                                    <button class="date">19</button><button class="date">20</button><button class="date">21</button><button class="date">22</button><button class="date">23</button><button class="date">24</button><button class="date">25</button>
+                                                    <button class="date">26</button><button class="date">27</button><button class="date">28</button><button class="date">29</button><button class="date">30</button><button class="date">31</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="calendar-footer">
+                                        <button class="reset-btn" type="button">Reset</button>
+                                        <button class="apply-btn" type="button">Apply</button>
+                                    </div>
                                 </div>
 
                             </div>
@@ -120,51 +168,51 @@
                 <img class="order-section-image" src="./assets/images/hero5.png">
             </section>
 
-            <div class="calendar" id="calendar">
-                <div class="months">
-                    <div class="left-month month">
-                        <div class="calendar-header">
-                            <button id="prev-month-btn" class="nav-btn prev-month-button" aria-label="Previous month">
-                                <img src="./assets/icons/arrow-left.svg" alt="arrow left icon">
-                            </button>
-                            <span id="left-month-year" class="month-year">December 2025</span>
-                            <div class="header-spacer"></div>
-                        </div>
-                        <div class="calendar-body">
-                            <div class="weekdays">
-                                <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
-                            </div>
-                            <div id="curr-month-dates" class="dates">
-                                <button class="date">1</button><button class="date">2</button><button class="date">3</button><button class="date">4</button><button class="date">5</button><button class="date">6</button><button class="date">7</button>
-                                <button class="date">8</button><button class="date">9</button><button class="date">10</button><button class="date">11</button><button class="date">12</button><button class="date">13</button><button class="date">14</button>
-                                <button class="date">15</button><button class="date">16</button><button class="date">17</button><button class="date">18</button><button class="date">19</button><button class="date">20</button><button class="date">21</button>
-                                <button class="date">22</button><button class="date">23</button><button class="date">24</button><button class="date">25</button><button class="date">26</button><button class="date">27</button><button class="date">28</button>
-                                <button class="date">29</button><button class="date">30</button><button class="date">31</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="right-month month">
-                        <div class="calendar-header">
-                            <div class="header-spacer"></div>
-                            <span id="right-month-year" class="month-year">January 2025</span>
-                            <button id="next-month-btn" class="nav-btn next-month-button" aria-label="Next month">
-                                <img src="./assets/icons/arrow-right.svg" alt="arrow right icon">
-                            </button>
-                        </div>
-                        <div class="calendar-body">
-                            <div class="weekdays">
-                                <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
-                            </div>
-                            <div id="next-month-dates" class="dates">
-                                <span class="empty"></span><span class="empty"></span>
-                                <button class="date">1</button><button class="date">2</button><button class="date">3</button><button class="date">4</button>
-                                <button class="date">5</button><button class="date">6</button><button class="date">7</button><button class="date">8</button><button class="date">9</button><button class="date">10</button><button class="date">11</button>
-                                <button class="date">12</button><button class="date">13</button><button class="date">14</button><button class="date">15</button><button class="date">16</button><button class="date">17</button><button class="date">18</button>
-                                <button class="date">19</button><button class="date">20</button><button class="date">21</button><button class="date">22</button><button class="date">23</button><button class="date">24</button><button class="date">25</button>
-                                <button class="date">26</button><button class="date">27</button><button class="date">28</button><button class="date">29</button><button class="date">30</button><button class="date">31</button>
-                            </div>
-                        </div>
-                    </div>
+<!--            <div class="calendar" id="calendar">-->
+<!--                <div class="months">-->
+<!--                    <div class="left-month month">-->
+<!--                        <div class="calendar-header">-->
+<!--                            <button id="prev-month-btn" class="nav-btn prev-month-button" aria-label="Previous month">-->
+<!--                                <img src="./assets/icons/arrow-left.svg" alt="arrow left icon">-->
+<!--                            </button>-->
+<!--                            <span id="left-month-year" class="month-year">December 2025</span>-->
+<!--                            <div class="header-spacer"></div>-->
+<!--                        </div>-->
+<!--                        <div class="calendar-body">-->
+<!--                            <div class="weekdays">-->
+<!--                                <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>-->
+<!--                            </div>-->
+<!--                            <div id="curr-month-dates" class="dates">-->
+<!--                                <button class="date">1</button><button class="date">2</button><button class="date">3</button><button class="date">4</button><button class="date">5</button><button class="date">6</button><button class="date">7</button>-->
+<!--                                <button class="date">8</button><button class="date">9</button><button class="date">10</button><button class="date">11</button><button class="date">12</button><button class="date">13</button><button class="date">14</button>-->
+<!--                                <button class="date">15</button><button class="date">16</button><button class="date">17</button><button class="date">18</button><button class="date">19</button><button class="date">20</button><button class="date">21</button>-->
+<!--                                <button class="date">22</button><button class="date">23</button><button class="date">24</button><button class="date">25</button><button class="date">26</button><button class="date">27</button><button class="date">28</button>-->
+<!--                                <button class="date">29</button><button class="date">30</button><button class="date">31</button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="right-month month">-->
+<!--                        <div class="calendar-header">-->
+<!--                            <div class="header-spacer"></div>-->
+<!--                            <span id="right-month-year" class="month-year">January 2025</span>-->
+<!--                            <button id="next-month-btn" class="nav-btn next-month-button" aria-label="Next month">-->
+<!--                                <img src="./assets/icons/arrow-right.svg" alt="arrow right icon">-->
+<!--                            </button>-->
+<!--                        </div>-->
+<!--                        <div class="calendar-body">-->
+<!--                            <div class="weekdays">-->
+<!--                                <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>-->
+<!--                            </div>-->
+<!--                            <div id="next-month-dates" class="dates">-->
+<!--                                <span class="empty"></span><span class="empty"></span>-->
+<!--                                <button class="date">1</button><button class="date">2</button><button class="date">3</button><button class="date">4</button>-->
+<!--                                <button class="date">5</button><button class="date">6</button><button class="date">7</button><button class="date">8</button><button class="date">9</button><button class="date">10</button><button class="date">11</button>-->
+<!--                                <button class="date">12</button><button class="date">13</button><button class="date">14</button><button class="date">15</button><button class="date">16</button><button class="date">17</button><button class="date">18</button>-->
+<!--                                <button class="date">19</button><button class="date">20</button><button class="date">21</button><button class="date">22</button><button class="date">23</button><button class="date">24</button><button class="date">25</button>-->
+<!--                                <button class="date">26</button><button class="date">27</button><button class="date">28</button><button class="date">29</button><button class="date">30</button><button class="date">31</button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
                 </div>
                 <div class="calendar-footer">
                     <button class="reset-btn" type="button">Reset</button>

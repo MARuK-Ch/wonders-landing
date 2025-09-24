@@ -194,7 +194,6 @@ document.getElementById('burger').addEventListener('click', (e) => {
 
 const footerLinks = document.querySelectorAll('.footer-links-item');
 
-
 footerLinks.forEach( footerLink => {
     footerLink.addEventListener('click', (e) => {
         e.preventDefault();
@@ -203,16 +202,6 @@ footerLinks.forEach( footerLink => {
 });
 
 //ФУНКЦИИ КАЛЕНДАРЯ
-// const prevMonthButton = document.querySelectorAll('.date-input-button');
-// const calendar = document.getElementById('calendar');
-//
-// prevMonthButton.forEach( (el,index) => {
-//     el.addEventListener('click', (e) => {
-//         calendar.classList.toggle('hidden');
-//     });
-// });
-
-
 
 const leftMonthYearEl = document.getElementById('left-month-year')
 const rightMonthYearEl = document.getElementById('right-month-year')
@@ -352,15 +341,34 @@ class Calendar {
 const calendar = new Calendar(leftMonthYearEl, rightMonthYearEl, prevMonthBtn, nextMonthBtn, currMonthDatesEl, nextMonthDatesEl)
 calendar.init()
 
-console.log(calendar)
+// console.log(calendar)
 
-// const days = [
-//     [null, null, 1, 2, 3, 4, 5],
-//     [6, 7, 8, 9, 10, 11, 12],
-//     [13, 14, 15, 16, 17, 18, 19],
-//     [20, 21, 22, 23, 24, 25, 26],
-//     [27, 28, 29, 30, 31, null, null],
-// ]
+// ОТОБРАЖЕНИЕ И СКРЫТИЕ КАЛЕНДАРЯ
+const dateInputButton = document.querySelectorAll('.date-input-button');
+
+dateInputButton.forEach( (el,index) => {
+    el.addEventListener('click', (e) => {
+        document.querySelector('.calendar').classList.toggle('hidden')
+    });
+});
+
+// ВАЛИДАЦИЯ ФОРМЫ ПОИСКА(без учета заполнения полей календаря)
+const findAlpRideBtn = document.getElementById('depart-button');
+
+findAlpRideBtn.addEventListener('click', function () {
+    const departeValue = document.getElementById('departure-input').value.trim();
+    const arrivValue = document.getElementById('arrival-input').value.trim();
+
+    if (!departeValue || !arrivValue) {
+        alert('Please fill in all required fields: Departure, Arrival!');
+        return;
+    }
+    if (departeValue.toLowerCase() === arrivValue.toLowerCase()) {
+        alert('The departure and destination points must be different');
+        return;
+    }
+    window.location.href = 'https://github.com/MARuK-Ch'; // позже будет добавлен переход на bus-list.html
+});
 
 
 
