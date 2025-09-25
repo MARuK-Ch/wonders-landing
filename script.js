@@ -158,6 +158,7 @@ function renderStationsArrival(value) {
     }
 }
 
+
 //ДЕЛЕГИРОВАНИЕ СОБЫТИЙ
 autocompleteDropdownArrival.addEventListener('mousedown', (event) => {
     if (event.target.nodeName === 'LI') {
@@ -181,6 +182,7 @@ counterButton.forEach( (el,index) => {
     });
 });
 
+
 // БУРГЕР МЕНЮ
 document.getElementById('burger').addEventListener('click', (e) => {
     document.querySelector('.burger').classList.toggle('open')
@@ -191,7 +193,7 @@ document.getElementById('burger').addEventListener('click', (e) => {
 });
 
 
-
+//ВИНОВАТ БЭК
 const footerLinks = document.querySelectorAll('.footer-links-item');
 
 footerLinks.forEach( footerLink => {
@@ -201,8 +203,8 @@ footerLinks.forEach( footerLink => {
     });
 });
 
-//ФУНКЦИИ КАЛЕНДАРЯ
 
+//ФУНКЦИИ КАЛЕНДАРЯ
 const leftMonthYearEl = document.getElementById('left-month-year')
 const rightMonthYearEl = document.getElementById('right-month-year')
 const prevMonthBtn = document.getElementById('prev-month-btn')
@@ -343,38 +345,66 @@ calendar.init()
 
 // console.log(calendar)
 
-//попытка настроить делегирование события нажатия кнопки даты календаря
-const dateButton = document.querySelectorAll('.date');
-const prevMonthImg = document.getElementById('prev-month-img');
-
-dateButton.forEach( (el,index) => {
-    el.addEventListener('mousedown', (e) => {
-        console.log(el.innerText)
-        prevMonthImg.remove()
-        prevMonthBtn.innerText = el.innerText
-    });
-});
 
 
+// ОТОБРАЖЕНИЕ И СКРЫТИЕ КАЛЕНДАРЯ, ОБРАБОТКА ВЫБОРА ДАТЫ
+const inputButtonDepart = document.getElementById('input-button-depart')
+const inputButtonReturn = document.getElementById('input-button-return')
+const calendarList = document.getElementById('calendar')
 
-// ОТОБРАЖЕНИЕ И СКРЫТИЕ КАЛЕНДАРЯ
-const dateInputButton = document.querySelectorAll('.date-input-button');
+const calendarDepartSpan = document.querySelector('#depart .date-input-button span')
+const calendarReturnSpan = document.querySelector('#return .date-input-button span')
+
+let selectedDateStr = ''
+let activeInput = '' // 'depart' или 'return'
+
+// Открытие календаря и установка активного поля
+inputButtonDepart.addEventListener('click', () => {
+    calendarList.classList.toggle('hidden')
+    activeInput = 'depart'
+})
+
+inputButtonReturn.addEventListener('click', () => {
+    calendarList.classList.toggle('hidden')
+    activeInput = 'return'
+})
+
+// Обработка выбора даты
+const dateButton = document.querySelectorAll('.date')
+dateButton.forEach((el) => {
+    el.addEventListener('click', () => {
+        const SelectDay = el.innerText
+        const monthYear = leftMonthYearEl.innerText
+        selectedDateStr = `${SelectDay} ${monthYear}`
+
+        const date = new Date(selectedDateStr)
+        const day = String(date.getDate()).padStart(2, '0')
+        const month = String(date.getMonth() + 1).padStart(2, '0')
+        const year = date.getFullYear()
+        const formatted = `${day}.${month}.${year}`
+
+        if (activeInput === 'depart') {
+            calendarDepartSpan.innerText = formatted
+        } else if (activeInput === 'return') {
+            calendarReturnSpan.innerText = formatted
+        }
+
+        calendarList.classList.add('hidden')
+    })
+})
+
+//закрытие календаря при щелчке вне поля календаря
+document.addEventListener('click', (event) => {
+    const isClickInsideCalendar = calendarList.contains(event.target)
+    const isClickOnInputButton = inputButtonDepart.contains(event.target) || inputButtonReturn.contains(event.target)
+
+    if (!isClickInsideCalendar && !isClickOnInputButton) {
+        calendarList.classList.add('hidden')
+    }
+})
 
 
-dateInputButton.forEach( (el,index) => {
-    el.addEventListener('click', (e) => {
-        document.querySelector('.calendar').classList.toggle('hidden')
-    });
-});
-
-dateButton.forEach( (el,index) => {
-    el.addEventListener('click', (e) => {
-        document.querySelector('.calendar').classList.toggle('hidden')
-    });
-});
-
-
-// ВАЛИДАЦИЯ ФОРМЫ ПОИСКА(без учета заполнения полей календаря)
+// ВАЛИДАЦИЯ ФОРМЫ ПОИСКА(без учета заполнения дат)
 const findAlpRideBtn = document.getElementById('depart-button');
 
 findAlpRideBtn.addEventListener('click', function () {
