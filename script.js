@@ -343,14 +343,36 @@ calendar.init()
 
 // console.log(calendar)
 
+//попытка настроить делегирование события нажатия кнопки даты календаря
+const dateButton = document.querySelectorAll('.date');
+const prevMonthImg = document.getElementById('prev-month-img');
+
+dateButton.forEach( (el,index) => {
+    el.addEventListener('mousedown', (e) => {
+        console.log(el.innerText)
+        prevMonthImg.remove()
+        prevMonthBtn.innerText = el.innerText
+    });
+});
+
+
+
 // ОТОБРАЖЕНИЕ И СКРЫТИЕ КАЛЕНДАРЯ
 const dateInputButton = document.querySelectorAll('.date-input-button');
+
 
 dateInputButton.forEach( (el,index) => {
     el.addEventListener('click', (e) => {
         document.querySelector('.calendar').classList.toggle('hidden')
     });
 });
+
+dateButton.forEach( (el,index) => {
+    el.addEventListener('click', (e) => {
+        document.querySelector('.calendar').classList.toggle('hidden')
+    });
+});
+
 
 // ВАЛИДАЦИЯ ФОРМЫ ПОИСКА(без учета заполнения полей календаря)
 const findAlpRideBtn = document.getElementById('depart-button');
