@@ -166,7 +166,7 @@ autocompleteDropdownArrival.addEventListener('mousedown', (event) => {
     }
 })
 
-//СЧЕТЧИК ПАССАЖИРОВ
+//КОЛИЧЕСТВО ПАССАЖИРОВ
 const counterText = document.querySelector('.counter-span');
 const counterButton = document.querySelectorAll('.counter-button');
 let counter = 1;
@@ -263,18 +263,6 @@ class Calendar {
         const daysInMonth = new Date(year, month + 1, 0).getDate() // последний день месяца (кол-во дней в месяце)
         const firstDay = new Date(year, month, 1)
         const firstDayWeekIndex = (firstDay.getDay() + 6) % 7
-
-
-        // 1 - Понедельник -> 1 + 6 = 7 % 7 = 0
-        // 2 - Вторник -> 2 + 6 = 8 % 7 = 1
-        // 3 - Среда -> 3 + 6 = 9 % 7 = 2
-        // 4 - Четверг -> 4 + 6 = 10 % 7 = 3
-        // 5 - Пятница -> 5 + 6 = 11 % 7 = 4
-        // 6 - Суббота -> 6 + 6 = 12 % 7 = 5
-        // 0 - Воскресенье -> 7 + 6 = 13 % 7 = 6
-
-        // (день + предпоследний день) % максимально кол-во дней
-
         const matrix = []
         // первая неделя
         const firstWeek = new Array(7).fill(null) // [null, null, null, null, null, null, null,]
